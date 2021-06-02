@@ -1,5 +1,6 @@
 <?php
 require('php/database.php');
+$message = '';
 
 if (isset($_POST["button"])) {
     session_start();
@@ -16,11 +17,9 @@ if (isset($_POST["button"])) {
 
     if ($user) {
         $_SESSION['user_session'] = $user["correo"];
-        echo "Inicio de sesión correctamente";
-
         header("Location:./php/home.php");
     } else {
-        echo "correo o contraseña incorrectos!!!";
+        $message = "correo o contraseña incorrectos!!!";
     }
 }
 
@@ -44,7 +43,7 @@ if (isset($_POST["button"])) {
         <input class="username" type="email" name="email" placeholder="Ingresa tu correo">
         <input class="password" type="password" name="password" placeholder="Password">
         <button class="button" name="button">Inicia sesión</button>
-        <span class="message">hola</span>
+        <span class="message"><?php echo $message; ?></span>
     </form>
 </body>
 
